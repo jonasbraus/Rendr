@@ -1,6 +1,6 @@
 package RenderEngine;
 
-import models.RawModel;
+import Models.RawModel;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;

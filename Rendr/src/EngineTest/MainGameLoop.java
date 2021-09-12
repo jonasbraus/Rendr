@@ -2,12 +2,12 @@ package EngineTest;
 
 import RenderEngine.DisplayManager;
 import RenderEngine.Loader;
-import models.RawModel;
+import Models.RawModel;
 import RenderEngine.Renderer;
 import Shaders.StaticShader;
-import models.TexturedModel;
+import Models.TexturedModel;
 import org.lwjgl.opengl.Display;
-import textures.ModelTexture;
+import Textures.ModelTexture;
 
 public class MainGameLoop
 {

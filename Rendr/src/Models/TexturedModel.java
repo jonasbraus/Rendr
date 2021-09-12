@@ -1,6 +1,6 @@
-package models;
+package Models;
 
-import textures.ModelTexture;
+import Textures.ModelTexture;
 
 public class TexturedModel
 {
