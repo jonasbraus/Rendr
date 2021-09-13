@@ -1,5 +1,6 @@
 package EngineTest;
 
+import Entity.Entity;
 import RenderEngine.DisplayManager;
 import RenderEngine.Loader;
 import Models.RawModel;
@@ -8,6 +9,7 @@ import Shaders.StaticShader;
 import Models.TexturedModel;
 import org.lwjgl.opengl.Display;
 import Textures.ModelTexture;
+import org.lwjgl.util.vector.Vector3f;
 
 public class MainGameLoop
 {
@@ -21,8 +23,8 @@ public class MainGameLoop
         DisplayManager.createDisplay("Rendr");
 
         Loader loader = new Loader();
-        Renderer renderer = new Renderer();
         StaticShader shader = new StaticShader();
+        Renderer renderer = new Renderer(shader);
 
         float[] vertices =
                 {
@@ -47,12 +49,13 @@ public class MainGameLoop
         RawModel model = loader.loadToVAO(vertices, indices, uvs);
         ModelTexture texture = new ModelTexture(loader.loadTexture("mossyBricks"));
         TexturedModel texturedModel = new TexturedModel(model, texture);
+        Entity entity = new Entity(texturedModel, new Vector3f(0, 0, -5), 0, 0, 0, 1);
 
         while(!Display.isCloseRequested())
         {
             renderer.prepare(0, 0, 0);
             shader.start();
-            renderer.render(texturedModel);
+            renderer.render(entity, shader);
             shader.stop();
             DisplayManager.updateDisplay();
         }

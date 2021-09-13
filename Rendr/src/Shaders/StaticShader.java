@@ -6,6 +6,7 @@ public class StaticShader extends ShaderProgram
 {
     private static final String vertexFile = "src/shaders/vertexShader.glsl", fragmentFile = "src/shaders/fragmentShader.glsl";
     private int locationTransform;
+    private int locationProjection;
 
     public StaticShader()
     {
@@ -16,6 +17,7 @@ public class StaticShader extends ShaderProgram
     protected void getAllUniformLocations()
     {
         locationTransform = getUniformLocation("transformationMatrix");
+        locationProjection = getUniformLocation("projectionMatrix");
     }
 
     @Override
@@ -28,5 +30,10 @@ public class StaticShader extends ShaderProgram
     public void loadTransformMatrix(Matrix4f matrix)
     {
         loadMatrix(locationTransform, matrix);
+    }
+
+    public void loadProjectionMatrix(Matrix4f matrix)
+    {
+        loadMatrix(locationProjection, matrix);
     }
 }
