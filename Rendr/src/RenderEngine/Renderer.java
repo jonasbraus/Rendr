@@ -26,8 +26,10 @@ public class Renderer
 
     public void prepare(float r, float g, float b)
     {
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glClearColor(r, g, b, 1);
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+        GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
     }
 
     public void render(Entity entity, StaticShader shader)
