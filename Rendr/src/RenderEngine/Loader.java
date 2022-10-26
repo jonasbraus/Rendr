@@ -13,6 +13,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,12 +40,13 @@ public class Loader
         Texture texture = null;
         try
         {
-            texture = TextureLoader.getTexture("PNG", new FileInputStream("res/"+fileName+".png"));
+            texture = TextureLoader.getTexture("PNG", Files.newInputStream(Paths.get("res/" + fileName + ".png")));
         } catch (IOException e)
         {
             e.printStackTrace();
         }
 
+        assert texture != null;
         int textureID = texture.getTextureID();
         textures.add(textureID);
         return textureID;

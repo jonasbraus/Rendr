@@ -1,6 +1,6 @@
 package RenderEngine;
 
-import Entity.Entity;
+import Entity.*;
 import Models.RawModel;
 import Models.TexturedModel;
 import Shaders.StaticShader;
