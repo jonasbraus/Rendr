@@ -2,6 +2,9 @@ package RenderEngine;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.*;
+import org.lwjgl.opengl.DisplayMode;
+
+import java.awt.*;
 
 public class DisplayManager
 {
@@ -74,5 +77,16 @@ public class DisplayManager
     public static boolean isFullScreen()
     {
         return Display.isFullscreen();
+    }
+
+    public static void setDisplayParent(Canvas parent)
+    {
+        try
+        {
+            Display.setParent(parent);
+        } catch (LWJGLException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 }
