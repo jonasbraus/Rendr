@@ -8,12 +8,14 @@ import java.awt.*;
 
 public class DisplayManager
 {
-    private static final int width = 1280, height = 700;
+    public static int width = 1280, height = 700;
     private static final int fps = 60;
 
     //creates a new display with openGL viewport in it
-    public static void createDisplay(String title, boolean vSync)
+    public static void createDisplay(String title, boolean vSync, int _width, int _height, boolean resizable)
     {
+        width = _width;
+        height = _height;
         ContextAttribs attribs = new ContextAttribs(3, 2)
                 .withForwardCompatible(true).withProfileCore(true);
 
@@ -23,7 +25,7 @@ public class DisplayManager
             Display.create(new PixelFormat(), attribs);
             Display.setVSyncEnabled(vSync);
             Display.setTitle(title);
-            Display.setResizable(true);
+            Display.setResizable(resizable);
         } catch (LWJGLException e)
         {
             e.printStackTrace();

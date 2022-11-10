@@ -69,7 +69,7 @@ public class SwingTest
     }
 
     private void includeGL(){
-        DisplayManager.createDisplay("Redr", false);
+        DisplayManager.createDisplay("Redr", false, 800, 600, true);
         DisplayManager.setDisplayParent(canvas);
 
         Loader loader = new Loader();
@@ -78,13 +78,25 @@ public class SwingTest
 
         Camera camera = new Camera();
 
+        OBJLoader objLoader = new OBJLoader("Object");
+        float[] vertices = objLoader.getVertices();
+        int[] indices = objLoader.getIndices();
+        float[] uvs = objLoader.getUVs();
+
+
+        RawModel model = loader.loadToVAO(vertices, indices, uvs);
+        ModelTexture texture = new ModelTexture(loader.loadTexture("mossyBricks"));
+        TexturedModel texturedModel = new TexturedModel(model, texture);
+        Entity entity = new Entity(texturedModel, new Vector3f(0, 0, -5), 0, 0, 0, 1);
+
         while(!Display.isCloseRequested())
         {
             renderer.prepare(0.2f, 0.2f, 0.2f);
             shader.start();
             shader.loadViewMatrix(camera);
-//            renderer.render(entity, shader);
+            renderer.render(entity, shader);
             shader.stop();
+            entity.rotate(0, 1, 0);
             DisplayManager.updateDisplay();
         }
 

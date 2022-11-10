@@ -16,7 +16,6 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import Textures.ModelTexture;
 import org.lwjgl.util.vector.Vector3f;
-import sun.awt.AWTAccessor;
 
 import java.util.Arrays;
 
@@ -29,7 +28,7 @@ public class MainGameLoop
 
     public static void main(String[] args)
     {
-        DisplayManager.createDisplay("Rendr", true);
+        DisplayManager.createDisplay("Rendr", true, 800, 600, true);
 
         Loader loader = new Loader();
         StaticShader shader = new StaticShader();
@@ -46,6 +45,7 @@ public class MainGameLoop
         TexturedModel texturedModel = new TexturedModel(model, texture);
         Entity entity = new Entity(texturedModel, new Vector3f(0, 0, -5), 0, 0, 0, 1);
 
+        entity.setPosition(new Vector3f(-0.5f, 0, 0));
 
         Camera camera = new Camera();
 
